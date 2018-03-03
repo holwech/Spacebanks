@@ -1,10 +1,10 @@
 import json
+import user
+
 def get_fundings(user):
 	d = {}
 	i = 0
 	for funding in user.fundings:
-
-		funding_name = 'funding'+i
 		dt = {}
 
 		dt['status'] 					= funding.status
@@ -12,11 +12,15 @@ def get_fundings(user):
 		dt['time_expired'] 				= funding.time_expired
 		dt['funding_name'] 				= funding.funding_type.name
 		dt['funding_amount'] 			= funding.funding_type.amount
-		dt['funding_permission_type'] 	= funding.funding_type.permission_type
 		
-		d[funding_name] = dt
+		d[i] = dt
 		i = i + 1
 
 	return json.dumps(dt)
 
 
+def main():
+    
+
+if __name__ == "__main__":
+    main()
