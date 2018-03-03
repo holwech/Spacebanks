@@ -8,12 +8,23 @@ funding_permission need to be chosen here
 def create_user(user_id):
     conn = sqlite3.connect('SQLite_data/user_storage.db')
     c = conn.cursor()
+    data_select =  c.execute('''SELECT * FROM users WHERE userId=?''', (user_id,))
+    user_data = c.fetchone()
 
-    if c.fetchone() == None:
-        #fetch user data, and store the new user in database
-        c.execute("INSERT INTO users VALUES ('%s','1')" % str(user_id))
-        user = user.User(self,user_id, 1 ):
+    if user_data == None:
+        #Add uset to database, and store the new user in database
+        c.execute('''INSERT INTO users(userId, fundingPermission)
+                  VALUES(?,?)''', (str(user_id), 1))
+        return_user = user.User(user_id, 1)
+        conn.commit()
     else:
-        user = c.execute('SELECT * FROM users WHERE userid = %s' % str(user_id))
+        #Fetch user from database
+        return_user = user.User(user_id, 1) #Should eventually fetch user data
 
-    return user
+    return return_user
+
+def main():
+    test_usr = create_user(12081111121)
+
+if __name__ == "__main__":
+    main()
