@@ -4,6 +4,7 @@ import json
 import socket
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
+import request_handler as handler
 
 ENDPOINT = 'https://dnbapistore.com/hackathon/customers/3.0'
 TOKEN = '38d8eddc-8daf-35bc-b582-c3fd3e57798d'
@@ -36,8 +37,8 @@ FUNDING_TYPE = [
 
 class httpServer(BaseHTTPRequestHandler):
 
-	def _set_response(self):
-		self.send_response(200)
+	def _set_response(self, code):
+		self.send_response(code)
 		self.send_header('Content-type', 'text/html')
 		self.end_headers()
 
@@ -45,13 +46,16 @@ class httpServer(BaseHTTPRequestHandler):
 	def do_GET(self):
 
 		# Parse request
+		route = handler.parser(self.path)
+		if route == '':
+			self._set_response(404)
 
 
 		# Handle request
 
 
 		# Create response
-		self._set_response()
+		self._set_response(200)
 		self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
 
 	#	POST 

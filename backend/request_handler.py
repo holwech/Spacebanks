@@ -35,21 +35,20 @@ def handle_request(route, data, funding_types):
 
 	return True
 
-def request_parser(url):
+def parser(url):
 	try:
 		i = url[1:].find('/')
 		if i < 0:
 			print('Invalid URL')
-			return False
+			return ""
 		route = url[1:i+1]
-		print(route)
-		return True
+		return route
 	except:
 		print('Invalid URL')
-		return False
+		return ""
 
 def main():
-	resp = request_parser('/fundings5')
+	resp = parser('/fundings5')
 	print(resp)
 
 if __name__ == "__main__":
