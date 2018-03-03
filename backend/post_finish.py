@@ -18,6 +18,7 @@ def post_finish(list_of_selected_transactions,funding):
 		msg['msg'] = (0,'NOK transfered back')
 
 
+	# save status to db
 	funding.status 	= 'finished'
 	msg['status'] 	= 'finished'
 	return json.dumps(msg)
