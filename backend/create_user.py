@@ -22,9 +22,3 @@ def create_user(user_id):
         return_user = user.User(user_id, 1) #Should eventually fetch user data
 
     return return_user
-
-def main():
-    test_usr = create_user(12081111121)
-
-if __name__ == "__main__":
-    main()
