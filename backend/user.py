@@ -4,8 +4,8 @@ class User:
 		self.funding_permission = funding_permission
 		self.fundings = []
 
-	def add_funding(funding):
-		self.funding.append(funding)
+	def add_funding(self,funding):
+		self.fundings.append(funding)
 
 class Funding:
 	def __init__(self,status,time_ack,time_expired,funding_type):
@@ -23,4 +23,4 @@ class Funding_type:
 		self.name = name
 		self.amount = amount
 		self.permission_type = permission_type
-		self.duration = duration
+		self.duration = duration # in days
