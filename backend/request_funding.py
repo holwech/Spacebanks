@@ -23,4 +23,4 @@ def return_pending(funding):
 	return json.dumps(msg)
 
 def transfer_money():
-	t = 1
+	one = 1
