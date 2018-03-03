@@ -1,9 +1,11 @@
+'''
+update fundings
+send finished status
+'''
 def post_finish(list_of_selected_transactions,funding):
 	lost = list_of_selected_transactions
-	#update fundings
-	#send finished status
 	totalcost = 0
-	msg = {'msg':''}
+	msg = {'msg': ''}
 	for transaction in lost:
 		totalcost = totalcost + transaction['amount']
 

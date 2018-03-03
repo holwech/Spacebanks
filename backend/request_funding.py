@@ -14,6 +14,7 @@ def request_funding(funding):
 	else:
 		funding.status = 'denied'
 	
+	# Save status to db
 	msg = {'status':funding.status}
 	return json.dumps(msg)
 
