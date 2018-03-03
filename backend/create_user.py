@@ -20,5 +20,3 @@ def create_user(user_id):
     else:
         #Fetch user from database
         return_user = user.User(user_id, 1) #Should eventually fetch user data
-
-    return return_user
