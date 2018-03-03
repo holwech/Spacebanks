@@ -1,6 +1,5 @@
 import json
 import user as u
-import pprint as p
 
 def get_fundings(user):
 	d = []
