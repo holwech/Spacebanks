@@ -13,9 +13,9 @@ def post_finish(list_of_selected_transactions,funding):
 	if totalcost < funding.fundingtype.amount:
 		money_back = funding.fundingtype.amount - totalcost
 		transfer_money_back_to_business(money_back)
-		msg['msg'] = (money_back,' transfered back') #Is dis de way?
+		msg['msg'] = (money_back,'NOK transfered back') #Is dis de way?
 	else:
-		msg['msg'] = (0,'transfered back')
+		msg['msg'] = (0,'NOK transfered back')
 
 
 	funding.status 	= 'finished'
