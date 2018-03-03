@@ -1,8 +1,9 @@
 import json
 import user as u
+import pprint as p
 
 def get_fundings(user):
-	d = {}
+	d = []
 	i = 0
 
 	for funding in user.fundings:
@@ -14,22 +15,23 @@ def get_fundings(user):
 		dt['funding_name'] 				= funding.funding_type.name
 		dt['funding_amount'] 			= funding.funding_type.amount
 		
-		d[i] = dt
+		d.append(dt)
 		i = i + 1
 
 	return json.dumps(d)
 
 
 def main():
-    fund1 = u.Funding_type('fund1',500,1,2)
-    fund2 = u.Funding_type('fund2',5000,2,2)
-    fund3 = u.Funding_type('fund3',1500,1,5)
+    FUNDING_TYPE1 = u.Funding_type('Europa 2 dager',500,1,2)
+    FUNDING_TYPE2 = u.Funding_type('Trondheim konf',5000,2,2)
+    FUNDING_TYPE3 = u.Funding_type('Abu Dhabi er nice',1500,1,5)
+    fund1 =  u.Funding('Pending', 1,2, FUNDING_TYPE1)
+    fund2 =  u.Funding('Approved', 6,7, FUNDING_TYPE3)
     user1 = u.User(444,1)
     user1.add_funding(fund1)
     user1.add_funding(fund2)
-    user1.add_funding(fund3)
     fundJson = get_fundings(user1)
-    print(fundJson)
+    print(json.dumps(fundJson, indent=1))
 
 
 if __name__ == "__main__":

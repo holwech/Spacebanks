@@ -14,7 +14,9 @@ hostName = ''
 hostPort = 5555
 
 # Create a some fundingTypes used for DEMO
-
+FUNDING_TYPE1 = u.Funding_type('Europa 2 dager',500,1,2)
+FUNDING_TYPE2 = u.Funding_type('Trondheim konf',5000,2,2)
+FUNDING_TYPE3 = u.Funding_type('Abu Dhabi er nice',1500,1,5)
 
 class httpServer(BaseHTTPRequestHandler):
 
