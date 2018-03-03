@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 import json
-import random
-
-import requests
 
 import socket
 from http.server import BaseHTTPRequestHandler, HTTPServer
