@@ -16,7 +16,7 @@ def get_fundings(user):
 		
 		d[funding_name] = dt
 		i = i + 1
-
 	return json.dumps(dt)
+
 
 
