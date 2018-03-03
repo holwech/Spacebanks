@@ -19,7 +19,7 @@ class ClientHandler(SocketServer.BaseRequestHandler):
     logic for the server, you must write it outside this class
     """
 
-    def sendMessage(self, message, message_type,sender):
+    def sendMessage(self, message, message_type, sender):
         time_now = str(datetime.now())
         message_dict = {'timestamp':time_now,'sender':sender,'response':message_type,'content':message}
         message_json = json.dumps(message_dict)
@@ -32,7 +32,6 @@ class ClientHandler(SocketServer.BaseRequestHandler):
             asciivalue = ord(letter)
             if not ((asciivalue > 64 and asciivalue <= 90) or (asciivalue >= 97 and asciivalue <= 122) or (asciivalue>47 and asciivalue<=57) ):
                 return False
-
         return True
 
     def handleUsername(self, received_username_dict):
