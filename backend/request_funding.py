@@ -1,6 +1,6 @@
 import json
 import time
-import create_funding
+import create_funding as cf
 import user as u
 
 def request_funding(funding):
@@ -23,11 +23,10 @@ def return_pending(user, funding_type):
 	dayStr = time.strftime("%Y-%m-%d")
 	day = int(dayStr[(len(dayStr)-2):len(dayStr)]) + funding_type.duration
 	time_expired = dayStr[0:(len(dayStr)-1)] + str(day)
-	#funding = u.Funding('pending',time.strftime("%Y-%m-%d"),time_expired,funding_type)
-	funding = create_funding('pending', time.strftime("%Y-%m-%d"), time_expired, funding_type, user.userId)
 	print(time_expired)
+	#funding = u.Funding('pending',time.strftime("%Y-%m-%d"),time_expired,funding_type)
+	funding = cf.create_funding('pending', time.strftime("%Y-%m-%d"), time_expired, funding_type, user.userId)
 
-	create_funding(funding.status,funding.time_ack, funding.time_expired, funding.funding_type, userId)
 	msg = {'status':funding.status}
 	user.add_funding(funding)
 

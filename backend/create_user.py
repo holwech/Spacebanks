@@ -8,7 +8,7 @@ funding_permission need to be chosen here
 def create_user(user_id):
     conn = sqlite3.connect('SQLite_data/user_storage.db')
     c = conn.cursor()
-    data_select =  c.execute('''SELECT * FROM users WHERE userId=?''', (user_id,))
+    c.execute('''SELECT * FROM users WHERE userId=?''', (user_id,))
     user_data = c.fetchone()
 
     if user_data == None:
