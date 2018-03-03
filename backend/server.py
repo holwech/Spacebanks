@@ -30,6 +30,7 @@ class httpServer(BaseHTTPRequestHandler):
 
 		# Handle request
 
+
 		# Create response
 		self._set_response()
 		self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
