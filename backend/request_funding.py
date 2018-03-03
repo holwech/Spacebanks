@@ -15,7 +15,8 @@ def request_funding(user,funding):
 
 def return_pending(funding):
 	#d for dict
-	msg = {'status':'pending'}
+	funding.status = 'pending'
+	msg = {'status':funding.status}
 	#d['status'] = 'pending'
 #	user.status = 'pending'
 
