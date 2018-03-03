@@ -16,7 +16,7 @@ hostPort = 5555
 
 # Create a some fundingTypes used for DEMO
 #FUNDING_TYPE = u.Funding_type('Europa 2 dager',500,1,2)
-FUNDING_TYPE = [
+FUNDING_TYPES = [
 	{	'name': 'Europa 2 dager',
 		'amount': 500,
 		'permission_type': 1,
@@ -39,39 +39,70 @@ class httpServer(BaseHTTPRequestHandler):
 
 	def _set_response(self, code):
 		self.send_response(code)
-		self.send_header('Content-type', 'text/html')
+		self.send_header('Content-type', 'application/json')
 		self.end_headers()
 
 	#	GET
 	def do_GET(self):
 
-		# Parse request
+		# Parse request 
 		route = handler.parser(self.path)
-		if route == '':
-			self._set_response(404)
-
 
 		# Handle request
+		if route == '':
+			print('Invalid request')
+			request_is_valid = False
+		else:
+			content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
+			post_data = self.rfile.read(content_length)			 # <--- Gets the data itself
+			data = json.loads(post_data)
+			request_is_valid, resp = handler.handle_request(route, data, FUNDING_TYPES)
 
 
-		# Create response
-		self._set_response(200)
-		self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
+		# Send response
+		if request_is_valid:
+			print('response: ', resp)
+			self._set_response(200)
+			self.wfile.write(resp.encode())
+		else:
+			# Create response
+			print('Invalid request, error in handle_request')
+			self._set_response(404)
+			self.wfile.write(json.dumps({
+	            'Error': 'Invalid request'
+	        }).encode())
 
 	#	POST 
 	def do_POST(self):
 
 		# Parse request 
+		route = handler.parser(self.path)
 
 		# Handle request
+		if route == '':
+			print('Invalid request')
+			request_is_valid = False
+		else:
+			content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
+			post_data = self.rfile.read(content_length)			 # <--- Gets the data itself
+			data = json.loads(post_data)
+			request_is_valid, resp = handler.handle_request(route, data, FUNDING_TYPES)
 
-		content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
-		post_data = self.rfile.read(content_length)			 # <--- Gets the data itself
-		data_dict = json.loads(post_data)
 
-		# Create response
-		self._set_response()
-		self.wfile.write("POST request for {}".format(post_data).encode('utf-8'))
+		# Send response
+		if request_is_valid:
+			print('response: ', resp)
+			self._set_response(200)
+			self.wfile.write(resp.encode())
+		else:
+			# Create response
+			print('Invalid request, error in handle_request')
+			self._set_response(404)
+			self.wfile.write(json.dumps({
+	            'Error': 'Invalid request'
+	        }).encode())
+				
+		
 
 
 

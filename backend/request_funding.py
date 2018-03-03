@@ -21,16 +21,19 @@ def request_funding(funding):
 
 def return_pending(user, funding_type):
 	dayStr = time.strftime("%Y-%m-%d")
-	day = int(dayStr[(len(dayStr)-2):len(dayStr)]) + funding_type.duration
+	day = int(dayStr[(len(dayStr)-2):len(dayStr)]) + funding_type['duration']
 	time_expired = dayStr[0:(len(dayStr)-1)] + str(day)
 	#funding = u.Funding('pending',time.strftime("%Y-%m-%d"),time_expired,funding_type)
-	funding = create_funding('pending', time.strftime("%Y-%m-%d"), time_expired, funding_type, user.userId)
+	
+	'''
+	funding = create_funding.create_funding('pending', time.strftime("%Y-%m-%d"), time_expired, funding_type, user.userid)
 	print(time_expired)
 
-	create_funding(funding.status,funding.time_ack, funding.time_expired, funding.funding_type, userId)
+	create_funding.create_funding(funding.status,funding.time_ack, funding.time_expired, funding.funding_type, user.userid)
 	msg = {'status':funding.status}
 	user.add_funding(funding)
-
+	'''
+	msg = {'status': 'test status'}
 	return json.dumps(msg)
 
 

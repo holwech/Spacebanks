@@ -11,22 +11,22 @@ Return a list of transaction in json format or -1 for any error
 def get_transactions(user_id,date_start,date_end):
 
 	# Use user_id to get account_number
-	r = requests.get(ENDPOINT + '/customer/'+user_id, headers=headers)
+	r = requests.get(ENDPOINT + '/customer/'+str(user_id), headers=headers)
 	if r.ok:
 		accountNumber = r.json()['accounts'][0]['accountNumber']
 	else:
 		print(r.content)
-		return -1
+		return
 
 	# Get tranaction list
-	param = '?accountNumber='+accountNumber+'&customerId='+user_id+'&dateFrom='+date_start+'&dateTo='+date_end
+	param = '?accountNumber='+str(accountNumber)+'&customerId='+str(user_id)+'&dateFrom='+date_start+'&dateTo='+date_end
 	r = requests.get(ENDPOINT + param, headers=headers)
 	if r.ok:
 		transactions = r.json()['transactions']
-		return transactions
+		return json.dumps(transactions)
 	else:
 		print(r.content)
-		return -1
+		return r.code
 
 
 def main():
