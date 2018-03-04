@@ -24,6 +24,7 @@ def post_finish(list_of_selected_transactions, funding, user_id):
 	conn = sqlite3.connect('SQLite_data/funding_storage.db')
 	c = conn.cursor()
 	c.execute('''UPDATE users SET status='finished' WHERE fundingId=%s''', str(user_id))
+	conn.commit()
 	
 	funding.status 	= 'finished'
 	msg['status'] 	= 'finished'

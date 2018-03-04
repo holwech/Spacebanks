@@ -11,10 +11,6 @@ import user as u
 def handle_request(route, data, funding_types):
 	resp = ""
 	try:
-		user_id = data['user_id']
-		#
-		# DB user = load the user from db 
-		#
 		'''
 		USED FOR TESTING
 
@@ -27,6 +23,11 @@ def handle_request(route, data, funding_types):
 		user.add_funding(fund1)
 		user.add_funding(fund2)
 		'''
+		user_id = data['user_id']
+		conn = sqlite3.connect('SQLite_data/funding_storage.db')
+		c = conn.cursor()
+		user_data = c.execute('''SELECT * FROM funding WHERE userId=?''', (str(user_id),) )
+		user = u.User(user_data[userId], user_data['fundingPermission'])
 
 		if route == 'user':
 			print('create_user()')

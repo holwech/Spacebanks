@@ -2,8 +2,9 @@ import json
 import time
 import create_funding as cf
 import user as u
+import sqlite3
 
-def request_funding(funding):
+def request_funding(funding, requesting_user):
 	# Wait for 10 sec to simulate that the company is approving the request
 	time.sleep(10) 
 
@@ -16,6 +17,11 @@ def request_funding(funding):
 		funding.status = 'denied'
 	
 	# Save status to db
+	conn = sqlite3.connect('SQLite_data/funding_storage.db')
+	c = conn.cursor()
+	c.execute('''UPDATE users SET status=? WHERE fundingId=?''', (funding.status, str(requesting_user.userid),))
+	conn.commit()	
+
 	msg = {'status':funding.status}
 	return json.dumps(msg)
 
