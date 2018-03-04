@@ -5,6 +5,16 @@ def get_fundings(user):
 	d = []
 	i = 0
 
+	FUNDING_TYPE1 = u.Funding_type('Europa 2 dager',500,1,2)
+	FUNDING_TYPE2 = u.Funding_type('Trondheim conf',5000,2,2)
+	FUNDING_TYPE3 = u.Funding_type('Abu Dhabi ferie',50000,1,5)
+	fund1 =  u.Funding('Pending', 1,2, FUNDING_TYPE1,1)
+	fund2 =  u.Funding('Approved', 6,7, FUNDING_TYPE3,2)
+	fund3 =  u.Funding('Denied', 6,7, FUNDING_TYPE2,2)
+	user.add_funding(fund1)
+	user.add_funding(fund2)
+	user.add_funding(fund3)
+	
 	for funding in user.fundings:
 		dt = {}
 
@@ -16,7 +26,7 @@ def get_fundings(user):
 		
 		d.append(dt)
 		i = i + 1
-
+	
 	return json.dumps(d)
 
 
