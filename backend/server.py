@@ -105,7 +105,12 @@ class httpServer(BaseHTTPRequestHandler):
 	            'Error': 'Invalid request'
 	        }).encode())
 				
-		
+	def do_OPTIONS(self):           
+		self.send_response(200, "ok")       
+		self.send_header('Access-Control-Allow-Origin', '*')                
+		self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+		self.send_header("Access-Control-Allow-Headers", "X-Requested-With")
+		self.end_headers()
 
 
 
