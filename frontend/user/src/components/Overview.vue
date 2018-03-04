@@ -29,12 +29,18 @@
       items: [
         {
           pendingStatus: 'Pending',
+          color:'grey',
+          title: 'Europa Trip - 2 days',
+          cost: '1000'
+        },
+        {
+          pendingStatus: 'Ongoing',
           color:'blue',
           title: 'Europa Trip - 2 days',
           cost: '1000'
         },
         {
-          pendingStatus: 'Success',
+          pendingStatus: 'Completed',
           color:'green',
           title: '2000 post-its',
           cost: '2500'
@@ -50,7 +56,7 @@
     computed: {
       filteredList() {
         return this.items.filter(item => {
-          if (item.pendingStatus == 'Pending') {
+          if (item.pendingStatus == 'Ongoing') {
             item.resolve = true
           }
           return item.title.toLowerCase().includes(this.search.toLowerCase())

@@ -12,7 +12,7 @@
                 <v-list-tile-title v-html="item.title"></v-list-tile-title>
               </v-list-tile-content>
               <v-tooltip bottom>
-                <v-icon dark color="orange darken-2" slot="activator">info</v-icon>
+                <v-icon dark color="orange darken-2" slot="activator" v-if='item.approval'>info</v-icon>
                 <span>Requires approval</span>
               </v-tooltip>
               <v-btn color="primary" dark>Request
@@ -42,7 +42,7 @@
         },
         {
           title: 'Office Supplies',
-          approval: true,
+          approval: false,
           cost: '200'
         },
         {
@@ -52,7 +52,7 @@
         },
         {
           title: 'Car leasing',
-          approval: true,
+          approval: false,
           cost: '1000'
         },
       ]

@@ -6,21 +6,18 @@
         dark
         tabs
       >
-        <v-container grid-list-xl text-xs-center>
-          <v-layout row wrap>
-            <v-flex xs10 offset-xs1>
-              <v-text-field
-                prepend-icon="search"
-                label="Search"
-                solo-inverted
-                class="mx-3"
-                flat
-                v-model="search"
-              ></v-text-field>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
+          <span class="hidden-sm-and-down">BudgetTree</span>
+          </v-toolbar-title>
+                <v-text-field
+                  prepend-icon="search"
+                  label="Search"
+                  solo-inverted
+                  class="mx-3"
+                  flat
+                  v-model="search"
+                ></v-text-field>
+        <v-spacer></v-spacer>
         <v-tabs
           slot="extension"
           centered
@@ -36,7 +33,7 @@
           <v-tab
             :to="{name:'FundingRequest'}"
             >
-            Funding request
+            Request funding
           </v-tab>
         </v-tabs>
       </v-toolbar>

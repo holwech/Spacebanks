@@ -7,9 +7,9 @@
             <v-list two-line subheader>
               <v-subheader>Select related transactions</v-subheader>
               <v-divider inset></v-divider>
-              <v-list-tile avatar v-for="(item, index) in filteredList">
+              <v-list-tile avatar v-for="(item, index) in filteredList" :key='item.id'>
                 <v-list-tile-action>
-                  <v-checkbox v-model="notifications"></v-checkbox>
+                  <v-checkbox v-model="checkedTrans" value='item.id'></v-checkbox>
                 </v-list-tile-action>
                 <v-chip class="grey darken-1" text-color="white">{{item.cost}} NOK</v-chip>
                 <v-list-tile-content class='mx-3'>
@@ -52,23 +52,28 @@
 <script>
   export default {
     data: () => ({
+      checkedTrans: [ ],
       items: [
         {
+          id: '1',
           title: "Pornhub Subscription",
           cost: 399,
           datetime: '27. March'
         },
         {
+          id: '2',
           title: "Clarion Hotel",
           cost: 689,
           datetime: '27. March'
         },
         {
+          id: '3',
           title: "Norwegian to Trondheim",
           cost: 1499,
           datetime: '26. March'
         },
         {
+          id: '4',
           title: "Cinemaxx",
           cost: 119,
           datetime: '26. March'
