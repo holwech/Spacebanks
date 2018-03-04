@@ -19,7 +19,7 @@ def request_funding(funding, requesting_user):
 	# Save status to db
 	conn = sqlite3.connect('SQLite_data/funding_storage.db')
 	c = conn.cursor()
-	c.execute('''UPDATE funding SET status=? WHERE fundingId=?''', (funding.status, str(requesting_user.userid),))
+	c.execute('''UPDATE funding SET status=:funding_status WHERE fundingId=:funding_user_id''', {'status': funding.status,'funding_user_id': str(request_funding.userid)})
 	conn.commit()	
 
 	msg = {'status':funding.status}
