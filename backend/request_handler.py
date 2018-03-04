@@ -42,7 +42,7 @@ def handle_request(route, data, funding_types):
 		elif route == 'newfunding':
 			type_id = data['funding_type']
 			print('return_pending()')
-			print(type_id)
+			#print(type_id)
 			funding = request_funding.return_pending(user, funding_types[type_id])
 			print('request_funding()')
 			resp = request_funding.request_funding(funding, user)

@@ -4,6 +4,7 @@ import socket
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import request_handler as handler
+import codecs
 
 ENDPOINT = 'https://dnbapistore.com/hackathon/customers/3.0'
 TOKEN = '38d8eddc-8daf-35bc-b582-c3fd3e57798d'
@@ -54,7 +55,8 @@ class httpServer(BaseHTTPRequestHandler):
 		else:
 			content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
 			post_data = self.rfile.read(content_length)			 # <--- Gets the data itself
-			data = json.loads(post_data)
+			reader = codecs.getreader("utf-8")
+			data = json.loads(reader(post_data))
 			request_is_valid, resp = handler.handle_request(route, data, FUNDING_TYPES)
 
 

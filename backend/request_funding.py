@@ -16,10 +16,12 @@ def request_funding(funding, requesting_user):
 	else:
 		funding.status = 'denied'
 	
+
+	print(funding.status)
 	# Save status to db
 	conn = sqlite3.connect('SQLite_data/funding_storage.db')
 	c = conn.cursor()
-	c.execute('''UPDATE funding SET status=:funding_status WHERE fundingId=:funding_user_id''', {'status': funding.status,'funding_user_id': str(request_funding.userid)})
+	c.execute('''UPDATE funding SET status=:funding_status WHERE fundingId=:funding_user_id''', {'status': funding.status,'funding_user_id': str(requesting_user.userid)})
 	conn.commit()	
 
 	msg = {'status':funding.status}
