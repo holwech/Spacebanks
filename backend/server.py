@@ -87,7 +87,7 @@ class httpServer(BaseHTTPRequestHandler):
 		else:
 			content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
 			post_data = self.rfile.read(content_length)			 # <--- Gets the data itself
-			data = json.loads(post_data)
+			data = json.loads(post_data.decode('utf-8'))
 			request_is_valid, resp = handler.handle_request(route, data, FUNDING_TYPES)
 
 

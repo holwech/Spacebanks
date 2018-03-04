@@ -9,9 +9,9 @@
               <v-divider inset></v-divider>
               <v-list-tile avatar v-for="(item, index) in filteredList" :key='item.id'>
                 <v-list-tile-action>
-                  <v-checkbox v-model="checkedTrans" value='item.id'></v-checkbox>
+                  <v-checkbox v-model="checkedTrans" :value='item.id'></v-checkbox>
                 </v-list-tile-action>
-                <v-chip class="grey darken-1" text-color="white">{{item.cost}} NOK</v-chip>
+                <v-chip class="grey lighten-1" text-color="white">{{item.cost}} NOK</v-chip>
                 <v-list-tile-content class='mx-3'>
                   <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                   <v-list-tile-sub-title>{{ item.datetime }}</v-list-tile-sub-title>
@@ -27,7 +27,7 @@
               </v-list-tile-content>
               <v-card-title primary-title >
                 <div>
-                  <h2 class="headline mb-0">1000 NOK</h2>
+                  <h2 class="headline mb-0">{{ total }} NOK</h2>
                 </div>
               </v-card-title>
             </v-list-tile>
@@ -85,6 +85,16 @@
         return this.items.filter(item => {
           return item.title.toLowerCase().includes(this.search.toLowerCase())
         })
+      },
+      total() {
+        var filtered = this.items.filter(item => {
+          return this.checkedTrans.includes(item.id)
+        }, this);
+        var sum = 0;
+        for (var i = 0; i < filtered.length; i++) {
+          sum += filtered[i].cost
+        }
+        return sum
       }
     },
     props: ['search']

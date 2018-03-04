@@ -7,7 +7,7 @@
           <template v-for="(item, index) in filteredList">
             <v-divider inset></v-divider>
             <v-list-tile avatar :key="item.title" @click="">
-              <v-chip class="grey darken-1" text-color="white">{{item.cost}} NOK</v-chip>
+              <v-chip class="grey lighten-1" text-color="white">{{item.cost}} NOK</v-chip>
               <v-list-tile-content class='mx-3'>
                 <v-list-tile-title v-html="item.title"></v-list-tile-title>
               </v-list-tile-content>
