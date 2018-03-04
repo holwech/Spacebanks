@@ -26,7 +26,7 @@ def handle_request(route, data, funding_types):
 		user_id = data['user_id']
 		conn = sqlite3.connect('SQLite_data/funding_storage.db')
 		c = conn.cursor()
-		user_data = c.execute('''SELECT * FROM funding WHERE userId=?''', (str(user_id),) )
+		user_data = c.execute('''SELECT * FROM funding WHERE userId=?''', (str(user_id),) ).fetchall()
 		user = u.User(user_data[userId], user_data['fundingPermission'])
 
 		if route == 'user':

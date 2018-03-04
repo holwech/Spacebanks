@@ -1,0 +1,32 @@
+
+
+URL: POST http://localhost:5555/{api call}/
+
+
+BODY:
+{"user_id": 10115265193,
+"funding_type": 1,
+"date_start": "2016-01-03",
+"date_end": "2016-01-05",
+"funding_id": 1,
+"transactions": [
+	    {
+	        "transactionID": 1040019354,
+	        "transactionType": 2,
+	        "timeStamp": "2016-01-03,13:52",
+	        "amount": "-480.00",
+	        "message/KID": "7339837346488300",
+	        "transactionAccountNumber": 14081111166,
+	        "transactionAccountName": "Frontier CurrentommuniCurrentations"
+	    },
+	    {
+	        "transactionID": 1050133828,
+	        "transactionType": 4,
+	        "timeStamp": "2016-01-05,08:06",
+	        "amount": "-280.00",
+	        "message/KID": "Master Card 5651123 Nok 280 YERBA MATE NORWAY AS",
+	        "transactionAccountNumber": 14081111121,
+	        "transactionAccountName": "YERBA MATE NORWAY AS"
+	    }
+	]
+}
