@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 ENDPOINT = 'https://dnbapistore.com/hackathon/accounts/3.0/account'
 TOKEN = '38d8eddc-8daf-35bc-b582-c3fd3e57798d'
 headers = {'Authorization': 'Bearer {}'.format(TOKEN), 'Accept': 'application/json'}

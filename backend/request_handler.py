@@ -43,6 +43,11 @@ def handle_request(route, data, funding_types):
 			print('return_pending()')
 			resp = request_funding.return_pending(user, funding_types[type_id])
 
+			# Send resp to 
+			#self.send_response(code)
+			#self.send_header('Content-type', 'application/json')
+			#self.end_headers()
+
 			# Have to send resp here
 			print('request_funding()')
 			# funding = load from db
