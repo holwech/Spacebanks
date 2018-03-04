@@ -1,5 +1,6 @@
 import user
 import sqlite3
+import user as u
 
 '''
 Check database if the user exist and create new user if not
@@ -10,6 +11,7 @@ def create_user(user_id):
     c = conn.cursor()
     c.execute('''SELECT * FROM users WHERE userId=?''', (user_id,))
     user_data = c.fetchone()
+    print(user_data)
 
     if user_data == None:
         #Add uset to database, and store the new user in database
@@ -18,5 +20,6 @@ def create_user(user_id):
         conn.commit()
     else:
         #Fetch user from database
-        return_user = user.User(user_id, 1) #Should eventually fetch user data
+        #user_data = c.execute('''SELECT * FROM users WHERE userId=?''', (str(user_id),) ).fetchall()
+        return_user = u.User(user_id, user_data[1])
     return return_user

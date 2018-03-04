@@ -4,6 +4,7 @@ import request_funding
 import get_transactions
 import post_finish
 import get_funding_type
+import sqlite3
 
 import user as u
 
@@ -23,16 +24,14 @@ def handle_request(route, data, funding_types):
 		user.add_funding(fund1)
 		user.add_funding(fund2)
 		'''
+		
 		user_id = data['user_id']
-		conn = sqlite3.connect('SQLite_data/funding_storage.db')
-		c = conn.cursor()
-		user_data = c.execute('''SELECT * FROM funding WHERE userId=?''', (str(user_id),) ).fetchall()
-		user = u.User(user_data[userId], user_data['fundingPermission'])
+		print(route)
 
 		if route == 'user':
 			print('create_user()')
-			create_user.create_user(user_id)
-
+			user = create_user.create_user(user_id)
+		
 		elif route == 'getfundings':
 			print('get_fundings()')
 			resp = get_fundings.get_fundings(user)
