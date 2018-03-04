@@ -6,8 +6,8 @@
           <v-subheader>Overview</v-subheader>
           <template v-for="(item, index) in filteredList">
             <v-divider inset></v-divider>
-            <v-list-tile avatar :key="item.title" @click="">
-              <v-chip class="grey darken-1" text-color="white">{{item.cost}} NOK</v-chip>
+            <v-list-tile avatar :key="item.id" @click="">
+              <v-chip class="grey lighten-1" text-color="white">{{item.cost}} NOK</v-chip>
               <v-list-tile-content class='mx-3'>
                 <v-list-tile-title v-html="item.title"></v-list-tile-title>
               </v-list-tile-content>
@@ -15,7 +15,7 @@
                 <v-icon dark color="orange darken-2" slot="activator" v-if='item.approval'>info</v-icon>
                 <span>Requires approval</span>
               </v-tooltip>
-              <v-btn color="primary" dark>Request
+              <v-btn color="grey lighten-1" dark @click="submitRequest">Request
                 <v-icon dark right>check_circle</v-icon>
               </v-btn>
             </v-list-tile>
@@ -31,36 +31,65 @@
     data: () => ({
       items: [
         {
+          id: '1',
           title: 'Europa Trip - 2 days',
           approval: true,
           cost: '1000'
         },
         {
+          id: '2',
           title: 'Europa Trip - 4 days',
           approval: true,
           cost: '2500'
         },
         {
+          id: '3',
           title: 'Office Supplies',
           approval: false,
           cost: '200'
         },
         {
+          id: '4',
           title: 'Customs',
           approval: true,
           cost: '4000'
         },
         {
+          id: '5',
           title: 'Car leasing',
           approval: false,
           cost: '1000'
         },
       ]
     }),
+    methods: {
+      submitRequest(event) {
+        console.log("Click!")
+        this.loading = true
+        this.axios({
+          method: 'post',
+          url: 'http://localhost:5555/getfundingtypes/',
+          data: {
+            'user_id': '14115374012'
+          },
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }).then(response => {
+          console.log(response)
+        }).catch(error => {
+          console.log('AJAX FAILED: ' + error)
+        })
+      },
+    },
     computed: {
       filteredList() {
         return this.items.filter(item => {
-          return item.title.toLowerCase().includes(this.search.toLowerCase())
+          var selected = item.title.toLowerCase().includes(this.search.toLowerCase())
+          if (selected) {
+            item.clicked = true
+          }
+          return selected
         })
       }
     },
