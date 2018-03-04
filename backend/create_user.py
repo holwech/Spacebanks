@@ -13,10 +13,10 @@ def create_user(user_id):
 
     if user_data == None:
         #Add uset to database, and store the new user in database
-        c.execute('''INSERT INTO users(userId, fundingPermission)
-                  VALUES(?,?)''', (str(user_id), 1))
+        c.execute('''INSERT INTO users(userId, fundingPermission) VALUES(?,?)''', (str(user_id), 1))
         return_user = user.User(user_id, 1)
         conn.commit()
     else:
         #Fetch user from database
         return_user = user.User(user_id, 1) #Should eventually fetch user data
+    return return_user
