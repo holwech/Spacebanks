@@ -8,12 +8,13 @@ class User:
 		self.fundings.append(funding)
 
 class Funding:
-	def __init__(self,status,time_ack,time_expired,funding_type):
+	def __init__(self,status,time_ack,time_expired,funding_type,funding_id):
 		self.status = status
 		self.time_ack = time_ack
 		self.time_expired = time_expired #self.add_time(time_ack,funding_type.duration)
 		self.funding_type = funding_type
-	
+		self.funding_id = funding_id
+
 	def add_time(self,time,add_time):
 		#return time+add_time
 		return 1

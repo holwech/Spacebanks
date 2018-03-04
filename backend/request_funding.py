@@ -21,7 +21,7 @@ def request_funding(funding, requesting_user):
 	# Save status to db
 	conn = sqlite3.connect('SQLite_data/funding_storage.db')
 	c = conn.cursor()
-	c.execute('''UPDATE funding SET status=:funding_status WHERE fundingId=:funding_user_id''', {'status': funding.status,'funding_user_id': str(requesting_user.userid)})
+	c.execute('''UPDATE funding SET status=:funding_status WHERE fundingId=:funding_user_id''', {'status': funding.status,'funding_user_id': str(funding.funding_id)})
 	conn.commit()	
 
 	msg = {'status':funding.status}
@@ -32,7 +32,6 @@ def return_pending(user, funding_type):
 	day = int(dayStr[(len(dayStr)-2):len(dayStr)]) + funding_type['duration']
 	time_expired = dayStr[0:(len(dayStr)-1)] + str(day)
 	#print(time_expired)
-	#funding = u.Funding('pending',time.strftime("%Y-%m-%d"),time_expired,funding_type)
 	funding = cf.create_funding('pending', time.strftime("%Y-%m-%d"), time_expired, funding_type, user.userid)
 
 

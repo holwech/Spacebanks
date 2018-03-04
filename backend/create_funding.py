@@ -14,6 +14,6 @@ def create_funding(status, time_ack, time_expired, funding_type, userId):
 	c.execute('''INSERT INTO funding(fundingId, userId, status, time_ack, time_exp) VALUES(?,?,?,?,?)''', (str(user_funding_count + 1), str(userId), status, time_ack, time_expired))
 	conn.commit()
 
-	funding_object = user.Funding(status, time_ack, time_expired, funding_type)
+	funding_object = user.Funding(status, time_ack, time_expired, funding_type,user_funding_count)
 
 	return funding_object
