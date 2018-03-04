@@ -40,6 +40,7 @@ class httpServer(BaseHTTPRequestHandler):
 	def _set_response(self, code):
 		self.send_response(code)
 		self.send_header('Content-type', 'application/json')
+		self.send_header('Access-Control-Allow-Origin', '*')
 		self.end_headers()
 
 	#	GET
