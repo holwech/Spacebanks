@@ -12,8 +12,9 @@ def handle_request(route, data, funding_types):
 	resp = ""
 	try:
 		user_id = data['user_id']
-		# user = load the user from db 
-
+		#
+		# DB user = load the user from db 
+		#
 		'''
 		USED FOR TESTING
 
@@ -41,16 +42,11 @@ def handle_request(route, data, funding_types):
 		elif route == 'newfunding':
 			type_id = data['funding_type']
 			print('return_pending()')
-			resp = request_funding.return_pending(user, funding_types[type_id])
-
-			# Send resp to 
-			#self.send_response(code)
-			#self.send_header('Content-type', 'application/json')
-			#self.end_headers()
-
-			# Have to send resp here
+			funding = request_funding.return_pending(user, funding_types[type_id])
 			print('request_funding()')
-			# funding = load from db
+			#
+			# DB funding = load from db
+			#
 			resp = request_funding.request_funding(funding)
 
 		elif route == 'transactions':
@@ -68,7 +64,9 @@ def handle_request(route, data, funding_types):
 		elif route == 'finish':
 			transactions = data['transactions']
 			funding_id = data['funding_id']
-			# funding = load from db
+			#
+			# DB funding = load from db
+			#
 			print('post_finish()')
 			resp = post_finish.post_finish(transactions,funding, user_id)
 			#resp = post_finish.post_finish(transactions,fund2, user_id)
