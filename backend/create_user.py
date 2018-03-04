@@ -11,7 +11,7 @@ def create_user(user_id):
     c = conn.cursor()
     c.execute('''SELECT * FROM users WHERE userId=?''', (user_id,))
     user_data = c.fetchone()
-    print(user_data)
+    #print(user_data)
 
     if user_data == None:
         #Add uset to database, and store the new user in database

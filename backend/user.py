@@ -11,7 +11,7 @@ class Funding:
 	def __init__(self,status,time_ack,time_expired,funding_type):
 		self.status = status
 		self.time_ack = time_ack
-		self.time_expired = self.add_time(time_ack,funding_type.duration)
+		self.time_expired = time_expired #self.add_time(time_ack,funding_type.duration)
 		self.funding_type = funding_type
 	
 	def add_time(self,time,add_time):

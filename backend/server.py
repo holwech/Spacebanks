@@ -62,7 +62,8 @@ class httpServer(BaseHTTPRequestHandler):
 		if request_is_valid:
 			print('response: ', resp)
 			self._set_response(200)
-			self.wfile.write(resp.encode())
+			if resp:
+				self.wfile.write(resp.encode())
 		else:
 			# Create response
 			print('Invalid request, error in handle_request')

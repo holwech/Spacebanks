@@ -26,11 +26,11 @@ def handle_request(route, data, funding_types):
 		'''
 		
 		user_id = data['user_id']
-		print(route)
+		user = create_user.create_user(user_id)
+		#print(route)
 
 		if route == 'user':
 			print('create_user()')
-			user = create_user.create_user(user_id)
 		
 		elif route == 'getfundings':
 			print('get_fundings()')
@@ -42,12 +42,10 @@ def handle_request(route, data, funding_types):
 		elif route == 'newfunding':
 			type_id = data['funding_type']
 			print('return_pending()')
+			print(type_id)
 			funding = request_funding.return_pending(user, funding_types[type_id])
 			print('request_funding()')
-			#
-			# DB funding = load from db
-			#
-			resp = request_funding.request_funding(funding)
+			resp = request_funding.request_funding(funding, user)
 
 		elif route == 'transactions':
 			date_start = data['date_start']

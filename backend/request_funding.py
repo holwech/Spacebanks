@@ -6,7 +6,7 @@ import sqlite3
 
 def request_funding(funding, requesting_user):
 	# Wait for 10 sec to simulate that the company is approving the request
-	time.sleep(10) 
+	#time.sleep(10) 
 
 	#if user.permission >= funding.funding.permission_type:
 	if 1:
@@ -19,7 +19,7 @@ def request_funding(funding, requesting_user):
 	# Save status to db
 	conn = sqlite3.connect('SQLite_data/funding_storage.db')
 	c = conn.cursor()
-	c.execute('''UPDATE users SET status=? WHERE fundingId=?''', (funding.status, str(requesting_user.userid),))
+	c.execute('''UPDATE funding SET status=? WHERE fundingId=?''', (funding.status, str(requesting_user.userid),))
 	conn.commit()	
 
 	msg = {'status':funding.status}
@@ -27,11 +27,12 @@ def request_funding(funding, requesting_user):
 
 def return_pending(user, funding_type):
 	dayStr = time.strftime("%Y-%m-%d")
-	day = int(dayStr[(len(dayStr)-2):len(dayStr)]) + funding_type.duration
+	day = int(dayStr[(len(dayStr)-2):len(dayStr)]) + funding_type['duration']
 	time_expired = dayStr[0:(len(dayStr)-1)] + str(day)
-	print(time_expired)
+	#print(time_expired)
 	#funding = u.Funding('pending',time.strftime("%Y-%m-%d"),time_expired,funding_type)
-	funding = cf.create_funding('pending', time.strftime("%Y-%m-%d"), time_expired, funding_type, user.userId)
+	funding = cf.create_funding('pending', time.strftime("%Y-%m-%d"), time_expired, funding_type, user.userid)
+
 
 	msg = {'status':funding.status}
 	user.add_funding(funding)
