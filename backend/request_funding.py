@@ -30,7 +30,7 @@ def return_pending(user, funding_type):
 	msg = {'status':funding.status}
 	user.add_funding(funding)
 
-	return json.dumps(msg)
+	return funding
 
 
 def transfer_money():
