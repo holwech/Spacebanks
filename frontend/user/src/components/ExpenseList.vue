@@ -37,7 +37,7 @@
                 </v-list-tile-title>
               </v-list-tile-content>
               <v-card-title primary-title >
-                <v-btn color="primary" dark class='mx-1'>Finish
+                <v-btn color="primary" dark class='mx-1' :to="{name:'Success'}">Finish
                   <v-icon dark right>check_circle</v-icon>
                 </v-btn>
               </v-card-title>
@@ -56,7 +56,7 @@
       items: [
         {
           id: '1',
-          title: "Pornhub Subscription",
+          title: "Netflix subscription",
           cost: 399,
           datetime: '27. March'
         },
@@ -74,7 +74,7 @@
         },
         {
           id: '4',
-          title: "Cinemaxx",
+          title: "Prinsen Kino",
           cost: 119,
           datetime: '26. March'
         },

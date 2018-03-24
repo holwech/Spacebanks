@@ -7,7 +7,7 @@
         tabs
       >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-          <span class="hidden-sm-and-down">BudgetTree</span>
+          <span class="hidden-sm-and-down">Preimburse</span>
           </v-toolbar-title>
                 <v-text-field
                   prepend-icon="search"

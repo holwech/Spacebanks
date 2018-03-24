@@ -15,7 +15,7 @@
                 <v-icon dark color="orange darken-2" slot="activator" v-if='item.approval'>info</v-icon>
                 <span>Requires approval</span>
               </v-tooltip>
-              <v-btn color="grey lighten-1" dark @click="submitRequest">Request
+              <v-btn color="grey lighten-1" dark @click="submitRequest" :to="{name:'Success'}">Request
                 <v-icon dark right>check_circle</v-icon>
               </v-btn>
             </v-list-tile>
@@ -32,13 +32,13 @@
       items: [
         {
           id: '1',
-          title: 'Europa Trip - 2 days',
+          title: 'Europe Trip - 2 days',
           approval: true,
           cost: '1000'
         },
         {
           id: '2',
-          title: 'Europa Trip - 4 days',
+          title: 'Europe Trip - 4 days',
           approval: true,
           cost: '2500'
         },
@@ -72,15 +72,20 @@
           data: {
             'user_id': '14115374012'
           },
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
         }).then(response => {
-          console.log(response)
-        }).catch(error => {
+         this.items = response.data
+        }, this).catch(error => {
           console.log('AJAX FAILED: ' + error)
         })
       },
+    },
+    beforeCreate () {
+      const api = `http://localhost:3000/urls?id=${this.$route.params.urlId}`
+      this.axios.get(api).then(response => {
+        this.item = response.data[0]
+      }).catch(error => {
+        console.log('AJAX FAILED: ' + error)
+      })
     },
     computed: {
       filteredList() {
